@@ -1,0 +1,15 @@
+GSN first round Questions
+
+How to implemente polymorphism 
+A.fire , B.fire
+When to pick abstract calss and when to pick interface(multiple inheritance not supported so using interface)
+Why not we create a static calss instded of singleton pattern
+diff b/w obj and Dic
+week ref
+how dose this week ref affected inside the events
+how to stop event after it has been fired
+what is diff b/w stopPorb vs stopImmeditaProb
+Vect and bitmap which is heavy on process and which is heavy on memory (vector heavy on process and less in memory, bitmap light on process and heavy on memory)
+is Sprite parent of movieclip in display hierarchy
+matrix transformation
+crossdomain

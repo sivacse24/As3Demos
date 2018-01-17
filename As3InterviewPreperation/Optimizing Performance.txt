@@ -1,0 +1,57 @@
+Conserving memory
+
+1)Choose an appropriate display object (trace(getSize(new Shape()));)
+	Shape:236,Sprite:412,MovieClip:440 
+2)Primitive types (getSize(a))
+	int,unit,Boolean : 4 bytes, Number: 8 Bytes, string size based on number of char inside
+3) Reusing objects
+	Reuse objects, when possible, instead of recreating them
+4) Object pooling
+5) Freeing memory :
+	Delete/null all references to objects to make sure that garbage collection is triggered
+	Before null remove listeners and if you use bit map use dispose() method to free memory
+6) Bitmap downsampling
+7) Filters : 	Avoid filters, including filters processed through Pixel Bender
+8)Direct mipmapping : 
+	The mipmapping feature applies only to dynamically loaded images or embedded bitmaps
+	Mipmapping does not apply to display objects that have been filtered or cached
+	Mipmapping can be processed only if the bitmap has a width and height that are even numbers
+9) Using 3D effects : flash player 10.1 supports rotationX and rotationY,rotationZ. display object is rasterized as a bitmap and therefore requires more memory
+10) Event model vs function callbacks : simple callbacks, instead of the event model.
+
+
+Minimizing CPU usage
+
+1) Freezing and unfreezing objects : add listner after ADDED_TO_STAGE , remove listeners when REMOVED_FROM_STAGE 
+2) Activate and deactivate events update the stage.frameRate
+3) Mouse interactions: mouseEnabled = false on non interation objects
+4) Timers vs ENTER_FRAME events : Timers are preferred  for non-animated content that executes for a long time. Ex: video player control bar can be moved via Timer.Reduce the frame rate.
+
+ActionScript 3.0 performance (getTimer())
+1) Vector class cs Array class : Vector class allows faster read and write access than the Array class. if Array take  107 sec Vector take 47 sec 
+2) Event capture and bubbling : instead of adding listeners to all child , add single listeners on parent in capture face
+3)  Avoid Regular expressions use String class indexOf(), substr(), or substring()
+4) Text field use the appendText() method instead of the += operator .
+	 Update text fields outside loops, when possible
+5) Avoid using the square bracket operator, when possible. assign with tmp variable and avoid square bracket
+6) Inline code, when possible, to reduce the number of function calls in your code
+7) Avoid evaluating statements in loops. ex : loop length should be done outside of loop
+
+Rendering performance
+1) avoid Off-stage content
+2) Bitmap caching
+	this feature caches a vector object, renders it as a bitmap internally
+	The bitmap caching feature is an advantage ,when the cached bitmap can be generated once and no need to update it.
+3) Event.ENTER_FRAME event in a single handler
+4) GPU
+	 Flash Player 10    : GPU was not used to calculate the graphics.It was only used to send all the graphics to the screen
+	 Flash Player 10.1 : GPU is also used to calculate the graphics, which can improve rendering speed significantly
+	 GPU mode is set automatically when running content on mobile devices, for the best possible performance
+	 Flash Player on the desktop still uses the CPU to do software rendering
+	 
+Optimizing network interaction
+1) Circular buffering : When load ad video mobile device can run out of disk space more easily.In such case it re-write old space which is used already.
+2)External content: divide your application into multiple SWF files
+3)Input output errors : Provide event handlers and error messages for IO errors
+Flash Remoting
+1) XML works best for  limited amount of content.Large amount of content Flash Remoting technology and Action Message Format (AMF).
