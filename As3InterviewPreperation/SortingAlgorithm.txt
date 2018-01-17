@@ -1,0 +1,26 @@
+https://brilliant.org/wiki/sorting-algorithms/
+
+
+sorting algorithms
+1)Time based sorting 
+2)Space based sorting
+3)Stablity based sorting (when 2 keys with same value,then in result sort first coming key should be first)
+4)Internal sort(main memory or ram) vs external sort (on disk or tape)
+5) recursive(Quick sort,merge sort) or non-recursive(Insertion sort,selection sort)
+
+
+Selection sort: (https://www.youtube.com/watch?v=GUDLRan2DWM&index=2&list=PL2_aWCzGMAwKedT2KfDMB9YA5DgASZb3U)
+1) Consider 'A' as array that need to be sorted.
+2) smallest number from 'A' will be moved to index of 0. next smallest will be moved to next index of 0
+
+Bubble sort: (https://www.youtube.com/watch?v=Jdtq5uKz-w4&index=3&list=PL2_aWCzGMAwKedT2KfDMB9YA5DgASZb3U)
+1) First element will be compare with next element swap them when second element is small.
+2) In each pass largest number will bubbled with last index
+
+Insertion sort (good than Selection,Bubble)
+1) arr[0] will be sorted portion and from a[1] to a[n] un sorted portion
+2) arr[1] will be compared with a[0] if a[1] is less than arr[0] then swap value of arr[0] and arr[1]
+3) now arr[0,1] are sorted portion. arr[2] will be compared with arr[0,1]. arr[2] will be inserted based on value
+
+Merge sort algorithm
+1)Splited arr till it is single . each of single merged with parent by sorted order
