@@ -1,0 +1,10 @@
+ActionScript 3.0 Bible - Wiley
+
+1) internal is the default access control attribute. They are available only to classes within the same class package as the class where the object is defined
+2)Order of operations : 
+	Expressions contained within parentheses are executed 
+	The multiplication, division, and modulus operators (*, /, %) are given equal weight and executed from left to right.
+	The addition and subtraction operators (+, -) are given equal weight and executed from left to right.
+3)	
+
+	

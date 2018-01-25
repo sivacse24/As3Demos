@@ -24,3 +24,26 @@ Insertion sort (good than Selection,Bubble)
 
 Merge sort algorithm
 1)Splited arr till it is single . each of single merged with parent by sorted order
+2)creating multiple array for splitting and merging
+
+
+QuickSort
+1)End of array consider as pivot. 
+2)From start to end all element will be compare with pivot. When element is less than pivot then it will be moved to first index
+3) If next small element found then it will be moved to next of first index
+ex: Arr = 7,2,1,6,8,5,3,4
+pivot = 4
+Pindex=7
+i=7
+i(7) is compared with pivot(4). 7 is bigger so dont do anything. increment the i.
+pivot = 4
+Pindex=7
+i=2
+i(2) is compared with pivot(4). 2 is lesser than 4. So swap the i,pindex
+new order is 2,7,1,6,8,5,3,4
+
+the same repeat till end
+
+
+quicksort is a very fast algorithm
+bubble sort is a slow algorithm

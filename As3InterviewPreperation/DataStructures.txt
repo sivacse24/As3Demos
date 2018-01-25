@@ -1,0 +1,99 @@
+Data Structures:
+Linear data structures 
+1)Array
+2)Linked list
+3)Stacks
+4)Queues
+Non-Linear
+1)Tree
+2)Graphs
+
+
+Array
+1)Array should be created with size limit.
+2) When we insert an element at particular position all element next to it should be moved to next index.
+3) When we delete an element at particular position all elements next to it should be moved to previous index.
+4) When array is full , then create another array with double size , and copy the old array to new array and remove the memory of old array
+5) The above 4th operation is very costly. 
+6)Array is not efficient in terms of memory
+
+linked list (https://www.youtube.com/watch?v=NobHlGUjV3g&index=3&list=PL2_aWCzGMAwI3W_JlcBbtYTwiQSsOTa6P)
+1) Each computer memory has own memory. it will be pointed by 'address' of the memory
+2) When declare a variable , two field will used. One for variable's value(head node) , next will be used by pointer(4 bytes)
+
+Arrays vs Linked Lists
+Time
+1) Array is fast while fetching data than Linked list
+Memory
+2) Array having un used memory till data filled. Linked list is good choice on memory management.Pointer variable take additional memory in Linked list
+3)Array while allocate memory , memory may not available for larger block. where as linked list has problem of fragmentation
+4)Linked list leads to segmentation error memory leaks
+
+Introduction to Doubly Linked List
+1) In single linked list A node contain two field 1) holding value , 2) holding next element address
+2)In double linked list A node additionally have previous address pointer 
+3)Advantage is reverse travels is easy
+4)Memory will be 12 bytes for each variable 
+
+Introduction to stack
+1)Last in first out
+2)insertion(push)  can be done only at the top
+3)deletion(pop)  can be done only at the top
+4)Top() will return the top element on the list
+5)Stacks are used for function calls / recursion
+6)Stacks are used for undo in editor
+
+Queues
+1)First in First out
+2)insertion(push) can be done only at the rear or tail
+3)deletion(pop) can be done only at the top or head
+4)front() or peack() will return head of the queue
+5)Queues are used in Network printer to print docs
+
+Trees
+1)It conatins parent,child,root nodes
+2) no parent node is called as root
+3) no child nodes are called as leaf
+4) Children of same parent nodes are called siblings (brothers/sisters)
+5) we can walk from parent to child . Child to parent travels is not possible
+6) all parents are called as ancestor of child
+7) All child of parent are called as descendant
+8) depth of node = number of edges from root
+9) height of node = no. of edges from the node to longest leaf node
+10) height of tree = no .of edges from root node to longest leaf node
+11)Files system stored in computer are example of tree structure
+12)Next work routing system are example of tree structure
+
+Binary Tree
+1) Binary trees --> child of all node should not exceed 2 child(max 2 child)  (Doubly Linked List is example for binary tree)
+
+Binary Search Tree
+1)Left node should be lesser than the right node , this is called Binary search tree
+2)A shorted array can perform Binary Search Tree is the fasted way
+3) ex : an array has 8,10,12,15,17,20,25. Searching element is 10. Now array length/2 is 15. left side should less than 15 and right side is greater value.so now 10 <15 so now we need to search 10 from 8,10,12. Now length/2 is 10. We found the search element
+
+memory allocation in stack and heap
+1)When program execute below is the memory allocation structure
+	Code(Text) --> Hold compiled instructions in machine language(Size Fixed at compile time)
+	Static/Global --> Hold global variable (Size Fixed at compile time)
+	Stacks --> hold all local variable (Size Fixed at compile time)
+	Heap --> dynamic memory.(Size grow/reduced at run time)
+2) When a variable need to allocated in memory stack will send info to heap. Heap will store the value and return the address to stack. Stack will store the address for the value.
+
+breadth-first and depth-first traversal strategies
+1) In Binary search tree once we move to left node then it is not possible to move to parent and move to right node.
+2) We need some strategies to take decision whether to move left or right.   breadth-first or depth-first helps us to take decision
+3)Breadth first : Visit all child from right to left in each level
+4)Depth first : All subtree should be visited till the leaf tree. There are three type of travels
+	a)PreOrder 	: <Root><Left><Right>
+	b)InOrder 		: <Left><Root><Right>
+	c)PostOrder 	: <Left><Right><Root>
+	
+	
+graphs
+1)There is no parent , child relation in graphs. A node can connect any where to any node
+2)Vertices and edges form the graphs
+3) edges can be directed(direction on one side) edges or undirected edges(direction on both side)
+
+	
+
