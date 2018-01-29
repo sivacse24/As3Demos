@@ -1,0 +1,27 @@
+Speed 	= is the rate at which distance is changing
+Velocity 	=  Speed + in which direction
+Vectors 	= magnitude(The length of the arrow is its magnitude) + direction
+Angular velocity 
+	rads = degree*(PI/180)
+	vx = Math.cos(rads) * speed;
+	vy = Math.sin(rads) * speed;
+
+Acceleration
+	private var vx:Number = 0;
+	private var ax:Number = .2;
+	private function onEnterFrame(event:Event):void
+	{
+		vx += ax;
+		ball.x += vx;
+	}
+	
+Gravity as acceleration
+	private var gravity:Number = 0.1;
+	private function onEnterFrame(event:Event):void
+	{
+		vx += ax;
+		vy += ay;
+		vy += gravity;
+		ball.x += vx;
+		ball.y += vy;
+	}

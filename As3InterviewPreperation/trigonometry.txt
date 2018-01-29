@@ -1,0 +1,41 @@
+1)We have angle, how to get (x,y) vector direction from angle?
+2)We have (x,y) vector direction , how to get angle from x,y point
+
+Convert b/w rad and degree
+
+degree = rad * 180/PI;
+
+1) Angle and radios(hyp) of the circle is given is given. Find the x,y points
+angle 	= 120
+rad 		= 1 find X? Y?
+
+use Formula 1:
+x = cos(120)*1 = -0.5
+y = sin(120)*1 = 0.87
+
+2)X,Y and radios (hyp) of the circle is given. find the angle of x,y
+x		= -0.71
+y		= 0.71
+rad 	= 1 , Find angle b/w x,y
+
+use Formula 1:
+@ = asin(0.71/1) 			= 0.789498209346172 rad * 180/PI = 45 degree 		(It takes 'Y' as input parameter. 0.71 can fall in Q1 or Q2.We don't know so done use this to find angle)
+@ = acos(-0.71/1) 		= 2.3602945361410685 rad * 180/PI = 135 degree	(It takes 'X' as input parameter. 0.71 can fall in Q1 or Q4.We don't know so done use this to find angle)
+@ = atan(0.71/-0.71) 	= -0.7853981633974483 rad  * 180/PI = -45 degree
+
+instead of atan , atan2 take two parameter and return the result
+@ = atan2(0.71,-0.71) 	= 2.356194490192345 rad * 180/PI =  135 degree (right ans) (It uses X,Y gives good to find exact Quadrant )
+
+
+User trigonometry 
+Formula 1:
+------------
+sin(@) = y/r 	(opp/hyp)
+cos(@) = x/r  (adj/hyp)
+tan(@) = y/x  (opp/adj)
+
+Formula 2:
+------------
+sin(@) = cos(90-@)
+cos(@) = sin(90-@)
+tan(@) = sin(@)/cos(@)
