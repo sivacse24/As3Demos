@@ -25,3 +25,7 @@ Gravity as acceleration
 		ball.x += vx;
 		ball.y += vy;
 	}
+
+	
+Physic questions:
+https://www.indiabix.com/aptitude/questions-and-answers/

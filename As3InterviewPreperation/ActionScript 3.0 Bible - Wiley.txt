@@ -1,0 +1,278 @@
+ActionScript 3.0 Bible - Wiley
+
+1)	Access Control Attributes
+	public 			:Available to all code
+	private			: Available only within the same class 
+	protected 		: Available within the same class and subclasses 
+	internal		: Available to code within the same package  (is the default access control attribute)
+	custom namespace: Available where the custom namespace is opened or when the identifier is prefixed with the namespace
+
+2)Order of operations : 
+	Expressions contained within parentheses are executed 
+	The multiplication, division, and modulus operators (*, /, %) are given equal weight and executed from left to right.
+	The addition and subtraction operators (+, -) are given equal weight and executed from left to right.
+3)Encapsulation: Encapsulation is also described as information hiding getter and setter is good example of data encapsulation
+
+4)Object-->EventDispatcher-->DisplayObject-->InteractiveObject-->DisplayObjectContainer-->Sprite-->MovieClip
+
+5)Preventing inheritance :  add the final keyword to the class declaration (P116)
+6)ActionScript 3.0 does not have built-in support for enumerations
+7)Determining types : you can use the "is" operator.(mc is MovieClip) returns true/false
+8)Dynamic Classes :  Dynamic classes are classes whose properties and methods can be changed, added, and removed at runtime. (public dynamic class ShapeShifter )
+9)methods vs functions : A method is any function defined within a class.
+10)Array and object are passed to function's argument they are reference type.Change inside the function will reflect to original object
+11)rest argument (...) 
+12)slice vs substring : slice() can take negative values but substring() cannot. Negative values (such as –3) will count from the end of the string backward. 
+13)Array
+	concat -> adding two array and return a new array
+	Push/Pop -> adding/remove operation on last index of element
+	shift-> remove elements from the front of the array
+	unshifting-> adding elements to the front of the array (queue.unshift(“Jim”, “Doro”);)
+	
+	slice(startIndex, endIndex) --> Returns a new array that consists of a range of elements from the original array, without modifying the original array.
+	splice (begin index,delete count,InsertingElements) --> Inserting and removing 
+	
+	every --> return when false condition meets
+	some --> return when true condition meets
+	filter --> return new array which meets condition
+	map --> same as filter but each element value can be modify
+	
+	var myArray: Array = [1, 2, 3, 4, 5];
+	function lessThanThree(elem: * , i: int, a: Array): Boolean {
+		trace(elem);
+		return elem < 3;
+	}
+	trace(myArray.some(moreThanTen)); 
+14)Associative arrays : Obejects and Dictionaries.Dictionaries has additional option for week reference
+15) delete operator : 
+	used to remove properties of an obj.
+	The delete operator works on dynamic classes 
+	The delete operator returns true if deletion succeeds
+	When using delete on an item in an Array, the length property is not updated
+	To delte objects,'delete' operator wont help.Simply setting obj to null. 
+16) XML (Page 242)
+17) Abstract class : As3 does not support abstract class
+	For Abstract class we can't create instance.It only able to extends 
+	Abstract class more like Interface.But It allow function and code inside.
+	Programs not allow multiple inheritance so when we need more abstract class we should go for interface
+18) Events
+	Capture phase (Event flow start from stage then go throw all parent obj )
+	Target phase (Event flow reached on Target obj)
+	Bubble pahse (Event flow from from target obj to all parent and finaly reach stage)
+	stopPropagation will stop event flow. But it allow all other event to execute on target obj.
+	stopImmediatePropagation will stop event flow. It never allow to execute another event register on the same obj.
+19)RollOver : happens only one time for movieclip.It never consider childs inside the mc.
+   MouseOver : will trigger for every child of movieclip.
+20)Working with External Data(482)
+	var request:URLRequest = new URLRequest(“http://server.com”); 
+	request.method = “GET”;
+	
+	 URLLoader : helps to get data from outside wold. Its default "dataFormat" is text.
+		 A SWF file on A.com can load files from B.com only if there is a crossdomain.xml file on B.com
+		 
+		 var request:URLRequest = i new URLRequest("http://example.com/simple_response.php"); 
+		 request.method = "POST"; 
+		 var urlVars:URLVariables = new URLVariables(); 
+		 urlVars.name = "josh"; urlVars.hometown = "Columbus"; urlVars.homestate = "Ohio"; 
+		 request.data = urlVars; 
+		 var loader:URLLoader = new URLLoader(request);
+		 
+	URLStream : allow you to read the data as it’s being downloaded in a binary format
+	sendToUR  : sends information to the URL  without redirecting the browser 
+	Loader    : load binary data, pictures or SWF files.It is  DisplayObject.contentLoaderInfo used here. Unload should be used to  remove the content 
+		As3 Loader can download As2 files.It will play fine. But As3(AVM2) can't directly communicate with As2(AVM1) files
+		
+	Understanding Flash Player Security:
+	------------------------------------
+	Parent swf try to acess child (loaded swf)
+	A.com has security sandbox and B.com has diffrent security sandbox. A can't load B's swf/png/xml file. This can be solve by placing crossdomain.xml in B.com
+	loadPolicyFile(). This is a good idea when you have multiple SWF files with different sandbox requirements.
+	If A.com want to acess library of B.com then while loading A's swf should set ApplicationDomain.currentDomain. Else A can't acess B's library/class/objects
+	
+	Child swf try to access parent swf
+		LoaderContext should be set at parent level( Security.currentDomain). Else loaded swf can't access parent swf
+		Security.allowDomain() 
+		
+21)Communicating with Server-Side Technologies (Page 502)
+	XMLSocket :An XML socket server is a special server that receives and sends XML to Flash Player via a socket
+	
+	var socket:XMLSocket = new XMLSocket(); 
+	socket.addEventListener(Event.CONNECT, connected); 
+	socket.addEventListener(DataEvent.DATA, dataReceived);
+	socket.connect(“localhost”, 8989);
+	
+	private function connected(event:Event):void { 
+		socket.send("hi"); 
+	} 
+		private function dataReceived(dataEvent:DataEvent):void { 
+		trace(dataEvent.data); var xml:XML = new XML(dataEvent.data); 
+	}
+
+	
+	Flash Remoting : 
+		It allows you to use AMF (ActionScript Message Format), a binary format
+		AMF is a very powerful tool for Flash developers because it is so lightweight and is processed so quickly
+		AMF format are typed: are Strings or Numbers
+	
+		NetConnection:contains methods and properties related to RTMP / video streaming / AMF and Flash Remoting. 
+			objectEncoding : determines  AMF3 (as3 version) , or AMF0 (as1,as2 version)
+			
+			var responder:Responder = new Responder(resultHandler, errorHandler);
+			
+			var nc:NetConnection = new NetConnection(); 
+			nc.connect(“http://server.com”);
+			nc.addEventListener(NetConnection.NET_STATUS, status);
+			nc.call(“getAuthorInfo”, responder, “Joshua Noble”, “ActionScript 3 Bible”);//“getAuthorInfo” server function,responder is handeler when server resposne,other are arguments for the “getAuthorInfo” function
+			
+			function resultHandler(result:Object):void { 
+				for (var property:String in result) { 
+					trace(property + " : " + result[property]); 
+				} 
+			}
+
+22)Saving Data to a Local Machine Using SharedObject
+	Stored infrom from a user login can't acess from another user account.
+	The name of the shared object may not contain spaces or spl char
+	Default size limit is 100 KB
+	Share object locaion
+		consider if an swf from  http://example.com/examples/test.swf user shareObject then the store path would be
+			SharedObjects/example.com/examples/test.swf/storage.sol 
+			it would be accessible to any SWF stored on http://example.com/
+			
+		In order to modify the location of the local shared object, you can pass a second parameter to the SharedObject.getLocal() method
+			Share object shared by http://DOMAIN/ORIGINAL/PATH/test.swf
+			SharedObject.getLocal(“NAME”); 				//creates or retrieves #SharedObjects/DOMAIN/ORIGINAL/PATH/test.swf/NAME.sol
+			SharedObject.getLocal(“NAME”, “/“); 		//creates or retrieves #SharedObjects/DOMAIN/NAME.sol 
+			SharedObject.getLocal(“NAME”,”/NEW/PATH”); //creates or retrieves #SharedObjects/DOMAIN/NEW/PATH/NAME.sol
+			
+		It is not possible to move the LSO file outside of the domain name directory
+		
+		getLocal(name:String, localPath:String = null, security:Boolean = false); by setting security as true. The share object can used only in https mode.Http swf can't access them
+		
+		As3 uses AMF3 to store SharedObject. 
+		As2 uses AMF0 to store SharedObject.
+		As3 can use AMF0 sharedObject.But As2 can't use AMF3 format
+		SharedObject.defaultObjectEncoding = ObjectEncoding.AMF0
+23)Transforms 
+	geometric Transforms and color Transforms
+	Matrix Transforms 
+		 offsetting the coordinates, scaling, or rotating the object, but also skewing/shearing the object.
+24)Bitmap and BitmapDats
+25)Binary Data :  A byte is unit of data comprised of 8 bits 
+	 Byte Array :  value only up to 255.  when greater than 255 then the modulo of that number and 256 will be used
+		Writing : writeByte(), writeBytes(), writeDouble(), writeFloat(), writeInt(), writeMultiByte(), writeObject(), writeShort(), writeUnsignedInt(), 
+				  writeUTF(), and writeUTFBytes()
+				  
+		Reading : readBoolean(), readByte(), readBytes(), readDouble(), readFloat(), readInt(), readMultiByte(), readObject(), readShort(), readUnsignedInt(),
+				  readUTF(), and readUTFBytes(). 
+				  
+		 Uses of Byte Arrays 
+				Computing sound spectrums
+				Loading images
+				Copying objects
+				Serializing data
+				Working with binary sockets
+				
+				Loading Image:
+				---------------
+				urlLoader = new URLLoader(); 
+				urlLoader.dataFormat = URLLoaderDataFormat.BINARY; 
+				urlLoader.load(new i URLRequest(“http://www.rightactionscript.com/samplefiles/image2.jpg”));
+				
+				private function completeHandler(event:Event):void 
+				{ 
+					var loader:Loader = new Loader(); 
+					loader.loadBytes(urlLoader.data); 
+					addChild(loader); 
+				}
+				
+				Copying objects : Copy array
+				---------------
+				var arrayA:Array = new Array(“a”, “b”, “c”, “d”); 
+				
+				var byteArray:ByteArray = new ByteArray(); 
+				byteArray.writeObject(arrayA); 
+				byteArray.position = 0; // after write array its position will be at last index.Next we are going to read it.So reset position with 0th index
+				
+				var arrayB:Array = byteArray.readObject() as Array; 
+				arrayB.push(“e”, “f”, “g”, “h”); trace(arrayA.length);  // Outputs 4 trace(arrayB.length);  // Outputs 8
+				
+				Copying custom data types is not support in byteArray.registerClassAlias() help to copy custom data type
+					registerClassAlias(“com.wiley.as3bible.ExampleType”, ExampleType); 
+					var a:ExampleType = new ExampleType(); 
+					var bytes:ByteArray = new ByteArray(); 
+					bytes.writeObject(a); bytes.position = 0; 
+					var b:ExampleType = bytes.readObject() as ExampleType;
+					
+26) Loading parameter :  this.loaderInfo.parameters
+27 Communicating Between JavaScript and Flash (page 740)
+	ExternalInterface.call(“alert”, “hello”); // calling js alert meth with arguments 
+	var value:String = ExternalInterface.call(“getStringValue”); //calling JS function and store return value
+	
+	ExternalInterface.addCallback(“runFlashScript”, runScript); //this allow JS to call flash function “runFlashScript”
+	
+28)Local Connections :
+	By default, LocalConnection objects attempt to communicate to the same domain
+	
+	Sender:
+	-------
+	var sender:LocalConnection = new LocalConnection();
+	var objectParameter:Object = {a: “one”, b: “two”, c: “three”}; 
+	var arrayParameter:Array = [1,2,3,4,5]; sender.send(“aConnection”, “someMethod”, objectParameter, arrayParameter);//Connection name,function to be callsed on reciver side,parameters...
+	
+	Receiver:
+	---------
+	var receiver:LocalConnection = new LocalConnection();
+	public function someMethod(obj:Object,arr:Array):void { // Code goes here }
+	receiver.client = this;
+	receiver.connect(“aConnection”);
+	
+	Sending and Receiving Across Domains
+	Sender to crossdomain
+	----------------------
+	sender.send(“themakers.com:aConnection”, “someMethod”); //you can add crossdomain as prefix on send method
+	sender.send(“_aConnection”, “someMethod”); //adding _ in send metod  calls to applications running on any domain
+	
+	Receiver from crossdomain
+	receiver.connect(“aConnection”);
+	receiver.allowDomain(“rightactionscript.com”, i “www.rightactionscript.com”, “themakers.com”, i “www.themakers.com”) or receiver.allowDomain(“*“);
+
+
+	
+
+
+
+
+
+
+
+	
+
+
+
+
+
+		
+
+
+	
+
+			
+
+	
+	
+	
+
+
+	
+
+
+	
+	
+
+
+  
+ 
+
+
+	

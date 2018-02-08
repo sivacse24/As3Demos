@@ -1,0 +1,68 @@
+1) MVC Pattern		--> Model(),Controller(ModelClass),View(Mode,Controller)
+Creational Patterns
+---------------------
+2) Singleton Pattern
+3) Factory Method Pattern --> set of all init function moved to common class.Similar to abstarct class.
+	public class Client 
+	{    
+		public function doSomething()    
+		{        
+			var object:Object = new Product();        
+			object.manipulate();    
+		} 
+	}
+	
+	The above example consider the Client class creating 100 instance of Product(); When Product class constructore change with some additional arguments passed, or manipulate updated with additional arguments then 100 lines of code need to be changed. To avoid this we use this factory method
+	
+	public class Client 
+	{    
+		public function doSomething()    
+		{        
+			var object:Object = new Product();        
+			object.manipulate();    
+		} 
+	}
+	
+	file:///D:/As3Materials/Ebooks/old/ActionScript_3.0_Design_Patterns.pdf
+	Ref Page (92)
+	
+Structural Patterns
+--------------------
+1) Decorator Pattern
+2) Adapter Pattern
+3)Composite Pattern : The Composite pattern enables you to elegantly deal with recursive or hierarchical data structures
+	example of such a data structure is computer: the file system.
+	
+	The Composite pattern has the following elements:
+
+	a)Element interface: Declare all operations of nodes & leaf (add,operation)
+
+	2)Leaf(extends the Interface): A class representing terminating elements in the data structure.  (operation to print the leaf name)
+
+	3)Composite (extends the Interface): A class for the collections in the data structure. //store leaf info into arr
+	
+	Page 228
+	
+	
+	var root:Composite = new Composite("root");
+	// create a node            
+	var n1:Composite = new Composite("composite 1");            
+	n1.add(new Leaf("leaf 1")); // add a child leaf           
+	n1.add(new Leaf("leaf 2")); // add a child leaf            
+	root.add(n1); // add node to root as child
+	// create another node            
+	var n2:Composite = new Composite("composite 2");            
+	n2.add(new Leaf("leaf 3")); // add a child leaf            
+	n2.add(new Leaf("leaf 4")); // add a child leaf            
+	n2.add(new Leaf("leaf 5")); // add a child leaf            
+	root.add(n2); // add node to root as child
+	// add a child leaf to the root node            
+	root.add(new Leaf("leaf 6"));
+	root.operation(); // call operation on root node
+
+Behavioral Patterns
+--------------------
+
+
+
+	
